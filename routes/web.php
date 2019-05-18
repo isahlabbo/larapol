@@ -26,3 +26,15 @@ Route::get('/create_poll', ['uses' => 'PollController@create', 'as' => 'poll.cre
 Route::post('/store/polls', ['uses' => 'PollController@store', 'as' => 'poll.store']);
 
 Route::get('/poll/index', ['uses' => 'PollController@index', 'as' => 'poll.index']);
+
+Route::get('/polls/{poll}/edit', ['uses' => 'PollController@edit', 'as' => 'poll.edit']);
+Route::patch('/polls/{poll}/update', ['uses' => 'PollController@update', 'as' => 'poll.update']);
+Route::delete('/polls/{poll}/remove', ['uses' => 'PollController@remove', 'as' => 'poll.remove']);
+Route::patch('/polls/{poll}/lock', ['uses' => 'PollController@lock', 'as' => 'poll.lock']);
+Route::patch('/polls/{poll}/unlock', ['uses' => 'PollController@unlock', 'as' => 'poll.unlock']);
+Route::get('/polls/{poll}/options/add', ['uses' => 'OptionController@push', 'as' => 'poll.options.push']);
+Route::post('/polls/{poll}/options/add', ['uses' => 'OptionController@add', 'as' => 'poll.options.add']);
+Route::get('/polls/{poll}/options/remove', ['uses' => 'OptionController@delete', 'as' => 'poll.options.remove']);
+Route::delete('/polls/{poll}/options/remove', ['uses' => 'OptionController@remove', 'as' => 'poll.options.remove']);
+
+Route::post('/polls/{poll}/vote', 'VoteController@vote')->name('poll.vote');

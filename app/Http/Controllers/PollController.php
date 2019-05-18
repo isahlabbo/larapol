@@ -17,7 +17,10 @@ class PollController extends PollManagerController
     	return view('dashboard.create');
     }
 
-    
+    public function edit(Poll $poll)
+    {
+        return view('dashboard.edit', compact('poll'));
+    }
 
     public function index()
     {

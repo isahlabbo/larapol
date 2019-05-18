@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Inani\Larapoll\Http\Controllers\OptionManagerController;
+use Inani\Larapoll\Poll;
 
 class OptionController extends OptionManagerController
 {
@@ -17,6 +18,9 @@ class OptionController extends OptionManagerController
     {
         return view('option.push', compact('poll'));
     }
-
-    
+    //lets now override this method on our own way
+    public function delete(Poll $poll)
+    {
+        return view('option.remove', compact('poll'));
+    }
 }
