@@ -2,9 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Inani\Larapoll\Http\Controllers\PollManagerController;
+use Inani\Larapoll\Poll;
 
-class PollController extends Controller
+class PollController extends PollManagerController
 {
-    //
+    public function home()
+    {
+        return view('dashboard.home');
+    }
+
+    public function create()
+    {
+    	return view('dashboard.create');
+    }
+
+    
+
+    public function index()
+    {
+        $polls = Poll::withCount('options', 'votes')->latest()->paginate(
+            config('larapoll_config.pagination')
+        );
+        return view('dashboard.index', compact('polls'));
+    }
 }

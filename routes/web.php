@@ -1,5 +1,5 @@
 <?php
-use Inani\Larapoll\Traits\Poll;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,20 +14,15 @@ use Inani\Larapoll\Traits\Poll;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/create_poll', function(){
-	$poll = new Poll([
-            'question' => 'What is the best PHP framework?'
-]); 
 
-// attach options and how many options you can vote to
-// more than 1 options will be considered as checkboxes
-$poll->addOptions(['Laravel', 'Zend', 'Symfony', 'Cake'])
-                     ->maxSelection() // you can ignore it as well
-                     ->generate();
-$poll->isRadio(); // true
-$poll->isCheckable(); // false
-$poll->optionsNumber(); // 4
-});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/poll_home', ['uses' => 'PollController@home', 'as' => 'poll.home']);
+
+Route::get('/create_poll', ['uses' => 'PollController@create', 'as' => 'poll.create']);
+
+Route::post('/store/polls', ['uses' => 'PollController@store', 'as' => 'poll.store']);
+
+Route::get('/poll/index', ['uses' => 'PollController@index', 'as' => 'poll.index']);
