@@ -27,7 +27,7 @@ trait Voter
     {
         $this->poll = $poll;
 
-        return $this;
+        return $this->poll;
     }
 
     /**

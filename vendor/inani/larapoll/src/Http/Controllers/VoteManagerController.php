@@ -5,7 +5,7 @@ namespace Inani\Larapoll\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\Request;
-use Inani\Guest;
+use Inani\Larapoll\Guest;
 use Inani\Larapoll\Poll;
 
 class VoteManagerController extends Controller
@@ -24,7 +24,7 @@ class VoteManagerController extends Controller
 
             $vote = $this->resolveVoter($request, $poll)
                 ->poll($poll)
-                ->vote($request->get('options'));
+                ->votes($request->get('options'));
 
             if($vote){
                 return back()->with('success', 'Vote Done');

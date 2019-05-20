@@ -4,6 +4,6 @@
 @endsection
 @section('content')
     <div class="container">
-    	<h2>{{'Customize poll home'}}</h2>
+    	@include('stubs.radio')
     </div>
 @endsection
