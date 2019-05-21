@@ -48,6 +48,7 @@ class VoteManagerController extends Controller
     protected function resolveVoter(Request $request, Poll $poll)
     {
         if($poll->canGuestVote()){
+        
             return new Guest($request);
         }
         return $request->user(config('admin_guard'));

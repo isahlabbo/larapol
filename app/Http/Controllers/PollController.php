@@ -9,10 +9,14 @@ class PollController extends PollManagerController
 {
     public function home()
     {
-        // dd(Poll::find(2));
-        return view('dashboard.home',['poll'=>Poll::find(2)]);
+        
+        return view('dashboard.home',['polls'=>Poll::all()]);
     }
-
+    public function result()
+    {
+        
+        return view('dashboard.result',['polls'=>Poll::all()]);
+    }
     public function create()
     {
     	return view('dashboard.create');

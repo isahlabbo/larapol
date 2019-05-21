@@ -1,3 +1,14 @@
+@if(Session::has('errors'))
+    <div class="alert alert-danger">
+            {{ session('errors') }}
+    </div>
+@endif
+@if(Session::has('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+@foreach($polls as $poll)
 <form method="POST" action="{{ route('poll.vote', $poll->id) }}" >
     @csrf
     <div class="panel panel-primary">
@@ -25,3 +36,4 @@
         <input type="submit" class="btn btn-primary btn-sm" value="Vote" />
     </div>
 </form>
+@endforeach

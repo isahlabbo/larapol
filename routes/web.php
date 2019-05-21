@@ -19,7 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/poll_home', ['uses' => 'PollController@home', 'as' => 'poll.home']);
+Route::get('/poll/home', ['uses' => 'PollController@home', 'as' => 'poll.home']);
+Route::get('/poll/result', ['uses' => 'PollController@result', 'as' => 'poll.result']);
 
 Route::get('/create_poll', ['uses' => 'PollController@create', 'as' => 'poll.create']);
 

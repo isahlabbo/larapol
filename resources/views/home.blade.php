@@ -13,8 +13,10 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    You are logged in!
+                    <a href="{{route('poll.create')}}" class="btn btn-primary btn-block">New Poll</a>
+                    <a href="{{route('poll.home')}}" class="btn btn-primary btn-block">Vote</a>
+                    <a href="{{route('poll.result')}}" class="btn btn-primary btn-block">View Result</a>
+                    <a href="{{route('poll.index')}}" class="btn btn-primary btn-block">View Polls</a>
                 </div>
             </div>
         </div>
