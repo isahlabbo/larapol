@@ -18,14 +18,17 @@ class VoteController extends VoteManagerController
     
     protected $user;
 
+    protected $poll;
+
     public function vote(Poll $poll, Request $request)
     {
         $this->option_id = $request->options;
 
         $this->user = Auth()->User();
-
+        
+        $this->poll = $poll;
     	if($this->votedThisOption()){
-    		return back()->with('errors', 'Sorry you have already vote this option');
+    		return back()->with('errors', 'Sorry you have already vote this question');
     	}else{
     		$option = Option::find($this->option_id);
 	    	$option->poll->votes()->create(['user_id'=>$this->user->id,'option_id'=>$option->id]);
@@ -59,9 +62,17 @@ class VoteController extends VoteManagerController
     public function votedThisOption()
     {
     	$user_vote = null;
-    	foreach (Vote::where(['user_id'=>$this->user->id,'option_id'=>$this->option_id])->get() as $vote) {
-    		$user_vote = $vote;
-    	}
+
+    	$options = [];
+        foreach ($this->poll->options as $option) {
+        	$options[] = $option->id;
+        }
+        foreach ($options as $option) {
+        	foreach (Vote::where(['user_id'=>$this->user->id,'option_id'=>$option])->get() as $vote) {
+	    		$user_vote = $vote;
+	    	}
+        }
+    	
     	if($user_vote != null)
     		return true;
     	else

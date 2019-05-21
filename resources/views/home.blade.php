@@ -13,10 +13,13 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <a href="{{route('poll.create')}}" class="btn btn-primary btn-block">New Poll</a>
+                    @if($user->isAdmin())
+                        <a href="{{route('poll.create')}}" class="btn btn-primary btn-block">New Poll</a>
+                        <a href="{{route('poll.index')}}" class="btn btn-primary btn-block">View Polls</a>
+                    @else
                     <a href="{{route('poll.home')}}" class="btn btn-primary btn-block">Vote</a>
+                    @endif
                     <a href="{{route('poll.result')}}" class="btn btn-primary btn-block">View Result</a>
-                    <a href="{{route('poll.index')}}" class="btn btn-primary btn-block">View Polls</a>
                 </div>
             </div>
         </div>
